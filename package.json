@@ -1,0 +1,23 @@
+{
+  "name": "conta-votos",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/institutoivoti/conta-votos.git"
+  },
+  "author": "@marcelobohn",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/institutoivoti/conta-votos/issues"
+  },
+  "homepage": "https://github.com/institutoivoti/conta-votos#readme",
+  "devDependencies": {
+    "code": "^4.0.0",
+    "lab": "^13.0.1"
+  }
+}
