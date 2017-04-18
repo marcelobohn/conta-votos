@@ -28,7 +28,7 @@ lab.experiment('testes temporários', () => {
   lab.test.skip('retorna os votos formatados sem duplicidade', (done) => {
       const lista = ['João', 'Carlos', 'João', 'Pedro', 'Pedro', 'Pedro'];
       const retorno = { resultado:[
-        {nome: 'João', votos: 2}, {nome: 'Carlos', votos: 1}, {nome: 'Pedro', votos: 3},
+        {nome: 'João', votos: 1}, {nome: 'Carlos', votos: 1}, {nome: 'Pedro', votos: 1},
       ] };
       expect(contaVotos(lista)).to.equal(retorno);
       done();
