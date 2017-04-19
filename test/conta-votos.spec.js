@@ -21,3 +21,15 @@ lab.experiment('quando informa votos', () => {
       done();
   });
 });
+
+lab.experiment('quando informa opção para exibir atributo de vencedor', () => {
+  lab.test('deve retornar com os cálculos', (done) => {
+      const lista = ['João', 'Carlos', 'João'];
+      const retorno = { resultado:[
+        {nome: 'João', votos: 2, vencedor: true}, 
+        {nome: 'Carlos', votos: 1, vencedor: false} 
+        };
+      expect(contaVotos(lista, {mostrarVencedor: true})).to.equal(retorno);
+      done();
+  });
+});
