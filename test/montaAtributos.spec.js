@@ -14,7 +14,7 @@ lab.experiment('montagem de atributos sem opções', () => {
 
 lab.experiment('montagem de atributos com opção para mostrar vencedor', () => {
   lab.test('deve retornar objetos com atributos vencedor com valor padrão false', (done) => {
-      expect(montaAtributos('marcelo', {mostraVencedor: true})).to.equal({nome: 'marcelo', votos: 1, vencedor: false});
+      expect(montaAtributos('marcelo', {mostrarVencedor: true})).to.equal({nome: 'marcelo', votos: 1, vencedor: false});
       done();
   });
 });
