@@ -3,7 +3,7 @@ const lab = exports.lab = Lab.script();
 
 const { expect } = require('code');
 
-const { contaVotos } = require('../app/conta-votos');
+const { contaVotos } = require('../app/contaVotos');
 
 lab.experiment('quando não informa parâmetros', () => {
   lab.test('deve resultado vazio', (done) => {
@@ -23,7 +23,7 @@ lab.experiment('quando informa votos', () => {
 });
 
 lab.experiment('quando informa opção para exibir atributo de vencedor', () => {
-  lab.test('deve retornar com os cálculos', (done) => {
+  lab.test('deve retornar com os cálculos e atributo de vencedor', (done) => {
       const lista = ['João', 'Carlos', 'João'];
       const retorno = { resultado:[
         {nome: 'João', votos: 2, vencedor: true}, 
