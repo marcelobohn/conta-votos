@@ -1,7 +1,11 @@
 const { montaAtributos } = require('../app/montaAtributos');
 
+const inicializaVotacao = function() {
+  return { resultado: [] };
+}
+
 function contaVotos(lista = [], opcoes = {}) {
-  let r = { resultado: [] };
+  let r = inicializaVotacao();
   lista.forEach(function(nome){
     // colocar no array de resultado
     if (!r.resultado.some(a => a.nome === nome))
