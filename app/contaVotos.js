@@ -6,12 +6,17 @@ const inicializaVotacao = function() {
 
 function contaVotos(lista = [], opcoes = {}) {
   let r = inicializaVotacao();
+  
+  // faz interação entre a lista de votos
   lista.forEach(function(nome){
-    // colocar no array de resultado
-    if (!r.resultado.some(a => a.nome === nome))
+    // verifica se o candidato não possui voto
+    if (!r.resultado.some(a => a.nome === nome)) {
+      // inclui o candidato com um voto
       r.resultado.push(montaAtributos(nome, opcoes));
-    else
+    } else {
+      // incrementa o número de votos
       r.resultado.find(a => a.nome === nome).votos++;
+    }
   });
 
   return r;
