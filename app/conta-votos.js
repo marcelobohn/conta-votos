@@ -4,6 +4,8 @@ function contaVotos(lista = [], opcoes = {}) {
     // colocar no array de resultado
     if (!r.resultado.some(a => a.nome === nome))
       r.resultado.push({nome: nome, votos: 1});
+    else
+      r.resultado.find(a => a.nome === nome).votos++;
   });
 
   return r;
