@@ -1,4 +1,4 @@
-const { montaAtributos } = require('../app/montaAtributos');
+const { montaAtributos } = require('./montaAtributos');
 
 const inicializaVotacao = function() {
   return { resultado: [] };
