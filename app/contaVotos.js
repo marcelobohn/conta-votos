@@ -18,7 +18,17 @@ function contaVotos(lista = [], opcoes = {}) {
       r.resultado.find(a => a.nome === nome).votos++;
     }
   });
-
+  
+  if (opcoes.mostrarVencedor) {
+    let candidatoVencedor = {votos: 0};
+    r.resultado.forEach(candidato => {
+      if (candidatoVencedor.votos < candidato.votos) {
+        candidatoVencedor = candidato;
+      }
+    });
+    r.resultado.find(a => a.nome === candidatoVencedor.nome).vencedor = true;
+  }
+  
   return r;
 }
 
