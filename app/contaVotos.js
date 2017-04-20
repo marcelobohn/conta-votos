@@ -4,32 +4,37 @@ const inicializaVotacao = function() {
   return { resultado: [] };
 }
 
-function contaVotos(lista = [], opcoes = {}) {
-  let r = inicializaVotacao();
-  
-  // faz interação entre a lista de votos
-  lista.forEach(function(nome){
-    // verifica se o candidato não possui voto
-    if (!r.resultado.some(a => a.nome === nome)) {
-      // inclui o candidato com um voto
-      r.resultado.push(montaAtributos(nome, opcoes));
-    } else {
-      // incrementa o número de votos
-      r.resultado.find(a => a.nome === nome).votos++;
-    }
-  });
-  
-  if (opcoes.mostrarVencedor) {
-    let candidatoVencedor = {votos: 0};
-    r.resultado.forEach(candidato => {
-      if (candidatoVencedor.votos < candidato.votos) {
-        candidatoVencedor = candidato;
-      }
-    });
-    r.resultado.find(a => a.nome === candidatoVencedor.nome).vencedor = true;
+class ContaVotos {
+  constructor(opcoes = {}) {
+    this.candidatos = [];
+    this.opcoes = opcoes;
   }
   
-  return r;
+  resultado() {
+    return { resultado: this.candidatos } ;
+  }
+  
+  registraVotos(lista = []) {
+    lista.forEach((nome) => {
+      // verifica se o candidato não possui voto
+      if (!this.candidatos.some(a => a.nome === nome)) {
+        // inclui o candidato com um voto
+        this.candidatos.push(montaAtributos(nome, this.opcoes));
+      } else {
+        // incrementa o número de votos
+        this.candidatos.find(a => a.nome === nome).votos++;
+      }
+    });
+    if (this.opcoes.mostrarVencedor) {
+      let candidatoVencedor = {votos: 0};
+      this.candidatos.forEach(candidato => {
+        if (candidatoVencedor.votos < candidato.votos) {
+          candidatoVencedor = candidato;
+        }
+      });
+      this.candidatos.find(a => a.nome === candidatoVencedor.nome).vencedor = true;
+    }    
+  }
 }
 
-module.exports = { contaVotos };
+module.exports = { ContaVotos };
