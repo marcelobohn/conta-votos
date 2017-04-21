@@ -1,9 +1,5 @@
 const { montaAtributos } = require('./montaAtributos');
 
-const inicializaVotacao = function() {
-  return { resultado: [] };
-}
-
 class ContaVotos {
   constructor(opcoes = {}) {
     this.candidatos = [];
@@ -25,6 +21,11 @@ class ContaVotos {
         this.candidatos.find(a => a.nome === nome).votos++;
       }
     });
+    
+    this.defineVencedor();
+  }
+  
+  defineVencedor() {
     if (this.opcoes.mostrarVencedor) {
       let candidatoVencedor = {votos: 0};
       this.candidatos.forEach(candidato => {
@@ -32,8 +33,8 @@ class ContaVotos {
           candidatoVencedor = candidato;
         }
       });
-      this.candidatos.find(a => a.nome === candidatoVencedor.nome).vencedor = true;
-    }    
+      this.candidatos.map(c => c.vencedor = c.nome === candidatoVencedor.nome);    
+    }
   }
 }
 
