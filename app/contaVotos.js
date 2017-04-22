@@ -11,14 +11,16 @@ class ContaVotos {
   }
   
   registraVotos(lista = []) {
-    lista.forEach((nome) => {
+    let filtroNome = (candidato, nome) => candidato.nome === nome;
+    
+    lista.forEach((nome) => {  
       // verifica se o candidato não possui voto
-      if (!this.candidatos.some(a => a.nome === nome)) {
+      if (!this.candidatos.some(a => filtroNome(a, nome))) {
         // inclui o candidato com um voto
         this.candidatos.push(montaAtributos(nome, this.opcoes));
       } else {
         // incrementa o número de votos
-        this.candidatos.find(a => a.nome === nome).votos++;
+        this.candidatos.find(a => filtroNome(a, nome)).votos++;
       }
     });
     
