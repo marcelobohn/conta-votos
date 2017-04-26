@@ -25,10 +25,11 @@ lab.experiment('quando informa lista vazia', () => {
 
 lab.experiment('quando informa votos', () => {
   lab.test('deve retornar com os cálculos', (done) => {
-    let cv = contaVotos();  
+    let cv = contaVotos();
     const lista = ['João', 'Carlos', 'João', 'Pedro', 'Pedro', 'Pedro'];
     cv.registraVotos(lista);
-    const retorno = { resultado:[{nome: 'João', votos: 2}, {nome: 'Carlos', votos: 1}, {nome: 'Pedro', votos: 3}] };
+    cv.registraVotos(lista);
+    const retorno = { resultado:[{nome: 'João', votos: 4}, {nome: 'Carlos', votos: 2}, {nome: 'Pedro', votos: 6}] };
     expect(cv.resultado()).to.equal(retorno);
     done();
   });
@@ -37,11 +38,11 @@ lab.experiment('quando informa votos', () => {
 lab.experiment('quando informa opção para exibir atributo de vencedor', () => {
   lab.test('deve retornar com os cálculos e atributo de vencedor', (done) => {
     const opcoes = {mostrarVencedor: true};
-    let cv = contaVotos(opcoes);    
+    let cv = contaVotos(opcoes);
     const lista = ['João', 'Carlos', 'João'];
-    cv.registraVotos(lista);    
+    cv.registraVotos(lista);
     const retorno = { resultado:[
-      {nome: 'João', votos: 2, vencedor: true}, 
+      {nome: 'João', votos: 2, vencedor: true},
       {nome: 'Carlos', votos: 1, vencedor: false} ]};
     expect(cv.resultado()).to.equal(retorno);
     done();
