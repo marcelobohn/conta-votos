@@ -1,5 +1,8 @@
 # Instalar pacotes do projeto
-yarn install
+npm install
 
 # Rodar Testes
-yarn test
+npm test
+
+# Instalar em outro projeto
+npm install conta-votos --save
