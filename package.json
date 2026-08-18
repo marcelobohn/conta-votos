@@ -4,7 +4,10 @@
   "description": "",
   "main": "app/contaVotos.js",
   "scripts": {
-    "test": "lab -v"
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
   },
   "repository": {
     "type": "git",
@@ -15,9 +18,5 @@
   "bugs": {
     "url": "https://github.com/institutoivoti/conta-votos/issues"
   },
-  "homepage": "https://github.com/institutoivoti/conta-votos#readme",
-  "devDependencies": {
-    "code": "^4.0.0",
-    "lab": "^13.0.1"
-  }
+  "homepage": "https://github.com/institutoivoti/conta-votos#readme"
 }

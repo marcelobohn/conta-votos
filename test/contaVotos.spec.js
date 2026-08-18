@@ -1,50 +1,56 @@
-const Lab = require('lab');
-const lab = exports.lab = Lab.script();
-
-const { expect } = require('code');
+const { describe, it } = require('node:test');
+const assert = require('node:assert/strict');
 
 const { contaVotos } = require('../app/contaVotos');
 
-lab.experiment('quando não informa parâmetros', () => {
-  lab.test('deve resultado vazio', (done) => {
-    let cv = contaVotos();
-    expect(cv.resultado()).to.equal({resultado: []});
-    done();
+describe('quando não informa parâmetros', () => {
+  it('deve resultado vazio', () => {
+    const cv = contaVotos();
+    assert.deepStrictEqual(cv.resultado(), { resultado: [] });
   });
 });
 
-lab.experiment('quando informa lista vazia', () => {
-  lab.test('deve resultado vazio', (done) => {
-    let cv = contaVotos();
+describe('quando informa lista vazia', () => {
+  it('deve resultado vazio', () => {
+    const cv = contaVotos();
     cv.registraVotos([]);
-    expect(cv.resultado()).to.equal({resultado: []});
-    done();
+    assert.deepStrictEqual(cv.resultado(), { resultado: [] });
   });
 });
 
-
-lab.experiment('quando informa votos', () => {
-  lab.test('deve retornar com os cálculos', (done) => {
-    let cv = contaVotos();
+describe('quando informa votos', () => {
+  it('deve retornar com os cálculos', () => {
+    const cv = contaVotos();
     const lista = ['João', 'Carlos', 'João', 'Pedro', 'Pedro', 'Pedro'];
     cv.registraVotos(lista);
     cv.registraVotos(lista);
-    const retorno = { resultado:[{nome: 'João', votos: 4}, {nome: 'Carlos', votos: 2}, {nome: 'Pedro', votos: 6}] };
-    expect(cv.resultado()).to.equal(retorno);
-    done();
+    const retorno = { resultado: [{nome: 'João', votos: 4}, {nome: 'Carlos', votos: 2}, {nome: 'Pedro', votos: 6}] };
+    assert.deepStrictEqual(cv.resultado(), retorno);
   });
 });
 
-lab.experiment('quando informa opção para exibir atributo de vencedor', () => {
-  lab.test('deve retornar com os cálculos e atributo de vencedor', (done) => {
-    const opcoes = {mostrarVencedor: true};
-    let cv = contaVotos(opcoes);
+describe('quando informa opção para exibir atributo de vencedor', () => {
+  it('deve retornar com os cálculos e atributo de vencedor', () => {
+    const opcoes = { mostrarVencedor: true };
+    const cv = contaVotos(opcoes);
     const lista = ['João', 'Carlos', 'João'];
     cv.registraVotos(lista);
-    const retorno = { resultado:[
+    const retorno = { resultado: [
       {nome: 'João', votos: 2, vencedor: true},
       {nome: 'Carlos', votos: 1, vencedor: false} ]};
-    expect(cv.resultado()).to.equal(retorno);
-    done();
+    assert.deepStrictEqual(cv.resultado(), retorno);
+  });
+});
+
+describe('quando existem duas contagens simultâneas', () => {
+  it('deve manter os votos de cada contagem isolados', () => {
+    const eleicaoA = contaVotos();
+    const eleicaoB = contaVotos();
+
+    eleicaoA.registraVotos(['João']);
+    eleicaoB.registraVotos(['Carlos']);
+
+    assert.deepStrictEqual(eleicaoA.resultado(), { resultado: [{nome: 'João', votos: 1}] });
+    assert.deepStrictEqual(eleicaoB.resultado(), { resultado: [{nome: 'Carlos', votos: 1}] });
   });
 });

@@ -1,5 +1,6 @@
-# Instalar pacotes do projeto
-npm install
+# conta-votos
+
+Biblioteca sem dependências. Requer Node.js 20 ou superior.
 
 # Rodar Testes
 npm test
