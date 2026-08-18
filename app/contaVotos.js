@@ -1,7 +1,7 @@
 const { montaAtributos } = require('./montaAtributos');
 
 const contaVotos = (opcoes = {}) => {
-  candidatos = [];
+  const candidatos = [];
   opcoes;
   
   return {

@@ -1,20 +1,16 @@
-const Lab = require('lab');
-const lab = exports.lab = Lab.script();
-
-const { expect } = require('code');
+const { describe, it } = require('node:test');
+const assert = require('node:assert/strict');
 
 const { montaAtributos } = require('../app/montaAtributos');
 
-lab.experiment('montagem de atributos sem opções', () => {
-  lab.test('deve retornar objetos básicos', (done) => {
-      expect(montaAtributos('marcelo', {})).to.equal({nome: 'marcelo', votos: 1});
-      done();
+describe('montagem de atributos sem opções', () => {
+  it('deve retornar objetos básicos', () => {
+    assert.deepStrictEqual(montaAtributos('marcelo', {}), {nome: 'marcelo', votos: 1});
   });
 });
 
-lab.experiment('montagem de atributos com opção para mostrar vencedor', () => {
-  lab.test('deve retornar objetos com atributos vencedor com valor padrão false', (done) => {
-      expect(montaAtributos('marcelo', {mostrarVencedor: true})).to.equal({nome: 'marcelo', votos: 1, vencedor: false});
-      done();
+describe('montagem de atributos com opção para mostrar vencedor', () => {
+  it('deve retornar objetos com atributos vencedor com valor padrão false', () => {
+    assert.deepStrictEqual(montaAtributos('marcelo', {mostrarVencedor: true}), {nome: 'marcelo', votos: 1, vencedor: false});
   });
 });
